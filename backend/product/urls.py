@@ -1,14 +1,11 @@
-from django.conf.urls import url, include
-from django.urls import path
+from django.urls import path, include
 from .views import ProductViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'answares',ProductViewSet)
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    path('pendings/', ProductViewSet.as_view({'get': 'list'})),
-    # path('processeds/', ProcessedsList.as_view()),
-    # path('sugestoes/', Sugestoes.as_view({'post': 'post'}))
+    path('', include(router.urls)),
+    path('product/', include('rest_framework.urls'))
 ]
